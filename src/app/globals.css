@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-maroon: #6E1423;
+  --color-maroon-deep: #4A0D18;
+  --color-cream: #F5EDE0;
+  --color-paper: #FBF7F0;
+  --color-sand: #F0E3D0;
+  --color-ink: #2A1A14;
+  --color-muted: #6B5A4E;
+  --color-faint: #8A7867;
+  --color-gold: #A87A35;
+  --color-highlight: #E8C88E;
+  --color-line: #E2D4BE;
+  --color-line-soft: #EDE2D0;
+  --color-field: #D9C8AE;
+  --color-chip: #CDBBA2;
+  --color-danger: #B3261E;
+  --color-success: #2F6B45;
+  --color-foot: #E9DCC8;
+  --color-foot-muted: #A8957E;
+  --color-foot-line: #3E2C23;
+  --color-foot-chip: #5A463A;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-hind), sans-serif;
+  --font-serif: var(--font-cormorant), var(--font-noto-serif-bengali), serif;
+  --font-mono: ui-monospace, Menlo, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Centered page column with the design's fluid side gutter. */
+@utility shell {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+
+/* Diagonal stripes used on photo placeholders. */
+@utility stripes {
+  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 10px);
+}
+
+/* Mughal-arch top used on hero and category tiles. */
+@utility arch {
+  border-radius: 999px 999px 2px 2px;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  input,
+  select,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-maroon);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn-primary {
+    background: var(--color-maroon);
+    color: var(--color-paper);
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1;
+    transition: background-color 0.15s;
+  }
+  .btn-primary:hover {
+    background: var(--color-maroon-deep);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--color-maroon);
+    border: 1px solid var(--color-maroon);
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1;
+    transition: background-color 0.15s;
+  }
+  .btn-outline:hover {
+    background: var(--color-sand);
+  }
+  .field-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-muted);
+  }
+  .field {
+    background: var(--color-paper);
+    border: 1px solid var(--color-field);
+    border-radius: 2px;
+    padding: 13px 14px;
+    font-size: 15px;
+    line-height: 1.2;
+    color: var(--color-ink);
+    outline-color: var(--color-maroon);
+  }
+  .field[aria-invalid='true'] {
+    border-color: var(--color-danger);
+  }
+  .link {
+    color: var(--color-maroon);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .link:hover {
+    color: var(--color-maroon-deep);
+  }
+}
+
+@keyframes ps-toast {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }

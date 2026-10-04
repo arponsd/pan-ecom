@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Panjabi Shop
 
-## Getting Started
+A bilingual (English / বাংলা) e-commerce storefront for panjabis, built with Next.js (App Router), TypeScript and Tailwind CSS.
 
-First, run the development server:
+## Features
+
+- Home, shop (category filter, search, size filter, sort), product detail with size guide
+- Cart and checkout with Inside / Outside Dhaka delivery fees
+- Cash on delivery, bKash and Nagad (with transaction ID) payment options
+- Order confirmation, order tracking and a demo account area with OTP-style sign-in
+- EN / বাংলা toggle, including Bangla numerals
+- Cart, language and orders saved in the browser (localStorage)
+
+This is a frontend-only demo: products live in `src/lib/data.ts`, and orders, tracking and sign-in are mocked in the browser.
+
+## Getting started
+
+Requires Node.js 20 or newer.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # production build
+npm start       # serve the production build
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+- `src/app/` — routes (`/`, `/shop`, `/product/[id]`, `/cart`, `/checkout`, `/track`, `/account`, `/credits`)
+- `src/components/` — header, footer, product card, size guide modal, toast and page views
+- `src/lib/data.ts` — catalogue, translations and demo data
+- `src/lib/store.ts` — client state (cart, language, orders) persisted to localStorage
+- `src/lib/photos.ts` — product photos and their licence credits
 
-To learn more about Next.js, take a look at the following resources:
+## Photo credits
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Demo product photos are openly licensed (CC0, CC BY, CC BY-SA) images from Wikimedia Commons, Flickr and rawpixel. Full attribution is on the `/credits` page and in `src/lib/photos.ts`. Products without a photo show a colour placeholder.
